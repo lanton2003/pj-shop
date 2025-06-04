@@ -216,10 +216,109 @@ body {
     border-radius: 15px;
     display: inline-block;
     border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.stock-number {
+    display: inline-block;
+    min-width: 2em;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.stock-number.updating {
+    animation: numberChange 0.5s ease-out;
+    color: #e74c3c;
+    transform: scale(1.2);
+}
+
+@keyframes numberChange {
+    0% {
+        transform: scale(1);
+        color: #2c3e50;
+    }
+    50% {
+        transform: scale(1.2);
+        color: #e74c3c;
+    }
+    100% {
+        transform: scale(1);
+        color: #2c3e50;
+    }
 }
 
 .stock::before {
     content: '🛒 ';
+}
+
+.stock.low-stock {
+    color: #e74c3c;
+    background-color: #fde8e8;
+    border-color: #fad2d2;
+    animation: pulse 1s ease-in-out;
+}
+
+.stock.out-of-stock {
+    color: #95a5a6;
+    background-color: #f5f6f7;
+    border-color: #e9ecef;
+    text-decoration: line-through;
+}
+
+.stock.updated {
+    animation: highlight 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes highlight {
+    0% {
+        background-color: #fff3cd;
+    }
+    100% {
+        background-color: #f8f9fa;
+    }
+}
+
+/* Stock update notification */
+.stock-update {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2ecc71;
+    color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+    display: none;
+}
+
+.stock-update.show {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .add-to-cart {
@@ -330,6 +429,38 @@ footer {
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Free Shipping Announcement */
+.free-shipping {
+    background: linear-gradient(45deg, #3498db, #2ecc71);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    text-align: center;
+    margin: 1rem auto;
+    max-width: 300px;
+    position: relative;
+    animation: glow 2s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+}
+
+.free-shipping::before {
+    content: '🚚';
+    margin-right: 8px;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(52, 152, 219, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
 }
 
 /* Responsive Design */
