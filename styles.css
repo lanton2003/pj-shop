@@ -14,6 +14,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
+    background-color: #b5d0db; /* Added sky blue background color */
 }
 
 /* Header and Navigation */
@@ -81,7 +82,7 @@ body {
 
 /* Hero Section */
 .hero {
-    min-height: 30vh; /* Changed from fixed height to min-height */
+    min-height: 10vh;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1920x1080');
     background-size: cover;
     background-position: center;
@@ -91,24 +92,31 @@ body {
     text-align: center;
     color: white;
     margin-top: 60px;
-    padding: 2rem 1rem; /* Added padding for better spacing */
+    padding: 1.5rem 1rem;
+    overflow: hidden;
 }
 
 .hero-content {
     max-width: 800px;
-    padding: 1rem;
-    margin: 0 10px;
+    padding: 0.25rem;
+    margin: 0 5px;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content h1 {
-    font-size: 2rem;
-    margin: 30px;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    margin: 5px;
+    margin-bottom: 0.15rem;
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .hero-content p {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .cta-button {
@@ -146,7 +154,7 @@ body {
 }
 
 .category-card {
-    background: white;
+    background: rgb(195, 165, 209);
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -166,7 +174,7 @@ body {
 /* Products Section */
 .products {
     padding: 4rem 5%;
-    background-color: #f9f9f9;
+    background-color: #a0a3a7;
     text-align: center;
 }
 
@@ -184,7 +192,7 @@ body {
 }
 
 .product-card {
-    background: white;
+    background: rgb(195, 165, 209);
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -903,4 +911,58 @@ footer {
 
 .checkout-btn:hover {
     background-color: #2980b9;
+}
+
+/* Error Message Styles */
+.error-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #e74c3c;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: none;
+    animation: slideInError 0.3s ease-out;
+    font-weight: 500;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.error-message::before {
+    content: '⚠️';
+    margin-right: 8px;
+}
+
+@keyframes slideInError {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Shake animation for the add to cart button when error occurs */
+.add-to-cart.error {
+    animation: shake 0.5s ease-in-out;
+    background-color: #e74c3c;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
 } 
